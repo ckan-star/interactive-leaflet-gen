@@ -232,6 +232,25 @@ footer a{color:#fff}
 .top { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; }
 .top .btn { justify-self: end; }
 </style>
+
+<style>
+.btn { border-radius: 999px; }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.hero-actions .btn { min-height: 44px; }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+.scan-line {
+  position: absolute; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, #0D8A6A, transparent);
+  animation: scan 2.4s linear infinite;
+  pointer-events: none;
+}
+@keyframes scan { from { top: 0; } to { top: 100%; } }
+@media (prefers-reduced-motion: reduce) { .scan-line { animation: none; } }
+</style>
 </head>
 <body>
 
@@ -243,7 +262,7 @@ footer a{color:#fff}
 </header>
 
 <main>
-  <section class="hero wrap" id="overview">
+  <section class="reveal" class="hero wrap" id="overview">
     <div class="hero-copy"><p class="eyebrow">智愛寫 · AI 互動中文寫作教學平台</p>
       <h1>一次掃描全班作文，<br>回饋即時到學生手上。</h1>
       <p class="hero-lead">批量掃描批改，分數與評語最終由老師決定。</p>
@@ -269,8 +288,8 @@ footer a{color:#fff}
       </ol>
     </figure><p class="source-note video-caption">流程示意影片（無聲）；可暫停或點選章節，實際平台截圖見下方。</p></div>
   </section>
-  <section class="promise-strip wrap" aria-label="教學重點"><p><b>老師掌握決定權</b>檢視、調整分數與評語</p><p><b>學生參與修改</b>根據提示逐項修訂</p><p><b>回饋接上教學</b>從個人練習到全班分析</p></section>
-  <section class="plain" id="challenges">
+  <section class="reveal" class="promise-strip wrap" aria-label="教學重點"><p><b>老師掌握決定權</b>檢視、調整分數與評語</p><p><b>學生參與修改</b>根據提示逐項修訂</p><p><b>回饋接上教學</b>從個人練習到全班分析</p></section>
+  <section class="reveal" class="plain" id="challenges">
     <div class="wrap">
       <div class="process-extras"><p class="eyebrow">先看平台怎樣支援寫作教學</p><h2 class="sec-h">從手寫上載，到回饋與寫作引導</h2><p class="section-intro" style="margin-top:-12px;font-size:14px;color:var(--ink-soft)">示範版・不用登入</p><p class="section-intro">先看作文如何轉成文字及回饋，再看看寫作前的引導方式。以下是預設示例。</p>
 
@@ -537,5 +556,14 @@ footer a{color:#fff}
 </script>
 <script src="experience.js?v=landing5"></script>
 <script src="teaching-case.js?v=visible6-autoflow4"></script>
+
+<script>
+document.querySelectorAll('.reveal').forEach(el => {
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-in'); });
+  }, { threshold: 0.15 });
+  io.observe(el);
+});
+</script>
 </body>
 </html>
