@@ -251,6 +251,25 @@ footer a{color:#fff}
 @keyframes scan { from { top: 0; } to { top: 100%; } }
 @media (prefers-reduced-motion: reduce) { .scan-line { animation: none; } }
 </style>
+
+<style>
+.hero h1 {
+  background: linear-gradient(135deg, #6B74D8, #3FC6CF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 40%, rgba(107,116,216,.12), transparent 50%),
+              radial-gradient(circle at 80% 30%, rgba(63,198,207,.1), transparent 45%);
+  pointer-events: none;
+  z-index: -1;
+}
+.vframe { box-shadow: 0 0 0 1px rgba(107,116,216,.3), 0 20px 40px -20px rgba(107,116,216,.25); }
+</style>
 </head>
 <body>
 
@@ -297,7 +316,7 @@ footer a{color:#fff}
         <h3 class="chal-h"><span>流程示範</span>手寫作文如何走到批改回饋</h3>
         <p>學生上載手寫作文，平台辨識成文字並提供回饋。老師再審閱及調整，將批改結果用於課堂跟進。</p>
 
-        <p class="source-note">預設流程動畫：文字及分數為固定示例，沒有即時進行 OCR 或 AI 分析。</p><ol class="flow3" id="flow3" aria-label="批改流程">
+        <p class="source-note">示範動畫，非即時批改。</p><ol class="flow3" id="flow3" aria-label="批改流程">
           <li><button type="button" data-stage="0" aria-current="step"><b>1</b>原稿掃描 / 上傳</button></li>
           <li><button type="button" data-stage="1" disabled><b>2</b>OCR 轉換文字</button></li>
           <li><button type="button" data-stage="2" disabled><b>3</b>AI 分析與回饋</button></li>
@@ -374,7 +393,7 @@ footer a{color:#fff}
 <section class="case-panel" id="caseStep1" aria-labelledby="caseTitle1" hidden><div class="case-columns"><article class="teacher-editor"><div class="role-banner role-t"><img src="media/flow/avatar-t.png" alt="" width="48" height="48"><div><strong>老師端 · 編輯給學生的提示</strong><span>你正在扮演老師；以下是本頁互動示範</span></div></div><h3 id="caseTitle1">按這一輪的目標，調整給學生的提示。</h3><p>這次老師選擇先聚焦「結尾扣題」，把要求拆成景物與感受兩個具體方向。</p><div class="ai-comment"><b>AI 評語示例</b><p>結尾未充分扣題，宜補充放晴後的景物描寫，並呼應開首的心願。</p></div><label for="teacherComment">老師給學生的提示</label><textarea id="teacherComment" maxlength="600" rows="5" aria-describedby="teacherHelp">結尾未充分扣題，宜補充放晴後的景物描寫，並呼應開首的心願。</textarea><p id="teacherHelp" class="source-note">可以自行修改，或載入較具體的提示示例。按下更新後，學生預覽才會顯示新版本。</p><button type="button" class="text-button" id="loadTeacherExample">載入具體提示示例</button><div class="teacher-actions"><button type="button" class="btn" id="applyTeacherComment">更新學生預覽</button><button type="button" class="text-button" id="restoreTeacherComment">還原 AI 評語示例</button></div><p id="teacherStatus" role="status">尚未更新學生預覽。</p></article><aside class="student-preview"><div class="role-banner role-s"><img src="media/flow/avatar-s.png" alt="" width="48" height="48"><div><strong>學生端 · 收到老師的提示</strong><span>本頁學生預覽，按更新後才會改變</span></div></div><h3>我的修訂任務</h3><p id="studentCommentPreview" class="preview-comment">先在老師編輯區調整提示，再按「更新學生預覽」。</p><p id="previewState" class="source-note">預覽尚未建立。</p><button type="button" class="btn ghost" data-case-next="2">帶著提示試改結尾</button></aside></div></section>
 <section class="case-panel" id="caseStep2" aria-labelledby="caseTitle2" hidden><div class="case-columns"><article class="student-revision"><div class="role-banner role-s"><img src="media/flow/avatar-s.png" alt="" width="48" height="48"><div><strong>學生端 · 根據提示補寫結尾</strong><span>你正在扮演學生；這是學生的修訂區</span></div></div><h3 id="caseTitle2">把提示變成自己的句子。</h3><p id="receivedVersion" class="received-version" role="status">老師尚未更新提示；目前按本頁的示例目標練習。</p><div class="received-task disclosed-content"><h3 class="disclosure-heading">老師給我的提示</h3><p id="receivedComment">本次目標：補寫放晴後的景象，並連到自己的感受。你也可以返回第 2 步，調整老師的提示。</p></div><label for="endingDraft">在原文之後，補寫一至三句結尾</label><textarea id="endingDraft" rows="5" maxlength="1200" placeholder="雨停之後，你看見甚麼？心情又怎樣？"></textarea><div id="endingReference" class="disclosed-content"><h3 class="disclosure-heading">參考結尾 · 提供寫作靈感</h3><p>雲縫間透出陽光，樹葉上的水珠閃閃發亮。我抬起頭，迎著清涼的風笑了：盼來的一場雨，讓回家的路也變得明亮了。</p><p class="source-note">這是本頁編製的參考寫法，並非學生原作；可以有不同的寫法。</p></div><fieldset class="ending-checklist"><legend>寫完後，按本次目標檢查</legend><label><input type="checkbox" id="checkScene">我寫出了放晴後的具體景象。</label><label><input type="checkbox" id="checkFeeling">我把景象連到自己的感受。</label><label><input type="checkbox" id="checkConnection">我重讀過，確認新結尾能接上原文。</label></fieldset><button type="button" class="btn" id="reviewEnding">完成自我檢查，查看比較</button><p id="endingStatus" role="status"></p></article><aside class="ending-comparison"><div class="role-banner role-s"><img src="media/flow/avatar-s.png" alt="" width="48" height="48"><div><strong>學生端 · 回看自己的修訂</strong><span>這是學生的自我檢查比較，不是老師評分畫面</span></div></div><h3>看見這次修改增加了甚麼。</h3><p class="comparison-label">原文結尾</p><blockquote>雨變小了，風也停了。</blockquote><div id="endingResult" hidden><p class="comparison-label">我補寫的結尾</p><p id="myEnding"></p><p class="source-note">這是你的自我檢查結果，並非 AI 或教師評分。是否扣題、銜接是否自然，仍需教師審閱。</p><p class="teaching-goal">這個示例串連了：發現問題 → 老師調整提示 → 學生修訂 → 回看目標。</p><a class="text-link" href="#flow-sec">看看怎樣放進一個寫作單元</a><br><a class="text-link" href="#trial">預約查看實際批改與修訂流程</a></div><p id="endingEmpty">補寫結尾並完成自我檢查後，這裏會保留你的文字，方便與原文比較。</p></aside></div></section>
 <div class="case-footer"><p id="casePosition" role="status">第 1 步，共 3 步</p><button type="button" id="resetTeachingCase" class="text-button" aria-expanded="false" aria-controls="caseResetConfirm">重設整個案例</button></div><div id="caseResetConfirm" class="reset-confirm" role="group" aria-label="確認重設案例" hidden><p>重設會清除本頁的教師提示、結尾草稿及自我檢查。要重設嗎？</p><button type="button" class="btn" id="confirmCaseReset">確認重設</button> <button type="button" class="btn ghost" id="cancelCaseReset">保留內容</button></div>
-</div><div class="optional-example disclosed-content"><h3 class="disclosure-heading">再試一個用詞修改的小例子</h3><section class="plain" id="word-demo"><div class="wrap"><h3>一處用詞，先提示再修訂</h3><p class="section-intro">依次看提示、試改，再查看教師可以怎樣跟進。</p><p class="source-note">預設教學示例，並非即時 AI 批改；示例句子及回饋為本頁編製。</p>
+</div><div class="optional-example disclosed-content"><h3 class="disclosure-heading">再試一個用詞修改的小例子</h3><section class="plain" id="word-demo"><div class="wrap"><h3>一處用詞，先提示再修訂</h3><p class="section-intro">依次看提示、試改，再查看教師可以怎樣跟進。</p><p class="source-note">教學示範，非即時批改。</p>
 <div class="micro-layout"><article class="micro-paper"><div class="role-banner role-s"><img src="media/flow/avatar-s.png" alt="" width="48" height="48"><div><strong>學生作品 · 用詞練習</strong><span>本頁編製示例</span></div></div><p class="sample-line">我發現拿傘的人<span class="marked-word">越少</span>。</p><button class="btn ghost" type="button" id="showHint">查看這處批注</button><div id="hintPane" hidden><h3>想一想</h3><p>人數是逐漸變少。表示持續變化時，「越少」前面應加甚麼？</p><form id="revisionForm"><label for="revisionAnswer">把「越少」改成完整的說法</label><div class="answer-row"><input id="revisionAnswer" name="revision" autocomplete="off" placeholder="輸入你的修改…" required><button class="btn" type="submit">檢查修改</button></div></form><p id="revisionFeedback" role="status"></p><button class="text-button" id="showReference" type="button">查看參考寫法</button></div></article>
 <aside class="micro-result"><div class="role-banner role-t"><img src="media/flow/avatar-t.png" alt="" width="48" height="48"><div><strong>教學說明 · 老師如何跟進</strong><span>示例練習的教學用途</span></div></div><h3>先讓學生想，再讓老師跟進。</h3><p id="microExplain">點開批注，體驗一個從提示到修訂的過程。</p><div id="revisionResult" hidden><p class="before-after"><span>原句片段：越少</span><strong>參考修訂：越來越少</strong></p><p>老師可確認建議是否切合學生程度，再決定評語及後續練習。</p><a class="text-link" href="#flow-sec">看看怎樣放進一個寫作單元</a><button class="text-button" type="button" id="resetMicro">重新體驗</button></div></aside></div>
 </div></section>
