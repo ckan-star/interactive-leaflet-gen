@@ -607,5 +607,9 @@ document.querySelectorAll('.reveal').forEach(el => {
   io.observe(el);
 });
 </script>
-</body>
+<script>
+if (window.matchMedia('(max-width: 640px)').matches) {
+  document.querySelectorAll('details').forEach(d => d.removeAttribute('open'));
+}
+</script></body>
 </html>
