@@ -386,6 +386,17 @@ h3 { font-size: var(--fs-h3); line-height: 1.4; }
   70% { transform: translateY(2px) scale(.98); }
 }
 </style>
+
+<style>
+@media (max-width: 768px) {
+  .sec-h.lit::after, h2.lit::after {
+    animation-duration: 1s;
+  }
+  .audience-card.bounce img {
+    animation-duration: .6s;
+  }
+}
+</style>
 </head>
 <body>
 
@@ -791,7 +802,7 @@ const headIO = new IntersectionObserver(entries => {
       headIO.unobserve(e.target);
     }
   });
-}, { threshold: 0.5 });
+}, { threshold: 0.2 });
 headings.forEach(h => headIO.observe(h));
 
 const audience = document.querySelector('#audience');
@@ -803,7 +814,7 @@ if (audience) {
         avIO.unobserve(e.target);
       }
     });
-  }, { threshold: 0.3 });
+  }, { threshold: 0.15 });
   avIO.observe(audience);
 }
 </script>
