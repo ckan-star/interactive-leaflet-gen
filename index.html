@@ -212,6 +212,11 @@ footer a{color:#fff}
   .story-chapter { min-height: 40vh !important; }
 }
 </style>
+
+<style>
+.trial-step { transition: box-shadow .2s, transform .15s; cursor: pointer; }
+.trial-step:hover { box-shadow: 0 4px 16px rgba(30,79,138,.12); transform: translateY(-1px); }
+</style>
 </head>
 <body>
 
@@ -365,10 +370,10 @@ footer a{color:#fff}
       <h2 class="sec-h">親手批一篇，看看合不合用</h2>
       <p class="section-intro">試用帳號已備有示範作文。約 10–15 分鐘就能看到掃描、評分到回饋的過程，也能試試由你調整分數和評語。</p>
       <div style="display:flex;flex-direction:column;gap:10px;max-width:760px">
-        <div style="background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;display:grid;grid-template-columns:auto 1fr;gap:14px"><div style="width:28px;height:28px;background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700">1</div><div><h3 style="margin:0 0 4px;font-size:16px">先用帳內示範作文看回饋</h3><p style="margin:0;font-size:14.5px;color:var(--ink-soft)">約 3–5 分鐘。登入後選用試用帳內示範作文，觀察 OCR 轉換與 AI 回饋。</p></div></div>
-        <div style="background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;display:grid;grid-template-columns:auto 1fr;gap:14px"><div style="width:28px;height:28px;background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700">2</div><div><h3 style="margin:0 0 4px;font-size:16px">用老師帳號調整評語或分數</h3><p style="margin:0;font-size:14.5px;color:var(--ink-soft)">約 3 分鐘。確認老師保留最終決定權。</p></div></div>
-        <div style="background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;display:grid;grid-template-columns:auto 1fr;gap:14px"><div style="width:28px;height:28px;background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700">3</div><div><h3 style="margin:0 0 4px;font-size:16px">下載示範文章再上載（可選）</h3><p style="margin:0;font-size:14.5px;color:var(--ink-soft)">約 3 分鐘。驗真實上載流程，或試批量上載。</p></div></div>
-        <div style="background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;display:grid;grid-template-columns:auto 1fr;gap:14px"><div style="width:28px;height:28px;background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700">4</div><div><h3 style="margin:0 0 4px;font-size:16px">進階體驗（可選 · 較長）</h3><p style="margin:0;font-size:14.5px;color:var(--ink-soft)">與寫作小助手對話，或上載自己學生的文章。</p></div></div>
+        <div class="trial-step" style="background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;display:grid;grid-template-columns:auto 1fr;gap:14px"><div style="width:28px;height:28px;background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700">1</div><div><h3 style="margin:0 0 4px;font-size:16px">先用帳內示範作文看回饋</h3><p style="margin:0;font-size:14.5px;color:var(--ink-soft)">約 3–5 分鐘。登入後選用試用帳內示範作文，觀察 OCR 轉換與 AI 回饋。</p></div></div>
+        <div class="trial-step" style="background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;display:grid;grid-template-columns:auto 1fr;gap:14px"><div style="width:28px;height:28px;background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700">2</div><div><h3 style="margin:0 0 4px;font-size:16px">用老師帳號調整評語或分數</h3><p style="margin:0;font-size:14.5px;color:var(--ink-soft)">約 3 分鐘。確認老師保留最終決定權。</p></div></div>
+        <div class="trial-step" style="background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;display:grid;grid-template-columns:auto 1fr;gap:14px"><div style="width:28px;height:28px;background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700">3</div><div><h3 style="margin:0 0 4px;font-size:16px">下載示範文章再上載（可選）</h3><p style="margin:0;font-size:14.5px;color:var(--ink-soft)">約 3 分鐘。驗真實上載流程，或試批量上載。</p></div></div>
+        <div class="trial-step" style="background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;display:grid;grid-template-columns:auto 1fr;gap:14px"><div style="width:28px;height:28px;background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700">4</div><div><h3 style="margin:0 0 4px;font-size:16px">進階體驗（可選 · 較長）</h3><p style="margin:0;font-size:14.5px;color:var(--ink-soft)">與寫作小助手對話，或上載自己學生的文章。</p></div></div>
       </div>
       <p style="margin-top:16px;font-size:14px;color:var(--ink-soft)"><strong>試完可帶走：</strong>一份批改樣本，以及對評分是否貼合校本的判斷。</p>
     </div>
