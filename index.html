@@ -354,6 +354,38 @@ h3 { font-size: var(--fs-h3); line-height: 1.4; }
   .sec-nav { font-size: 13px; padding: 6px 12px; }
 }
 </style>
+
+<style>
+/* Title light sweep */
+.sec-h, h2 {
+  position: relative;
+  display: inline-block;
+}
+.sec-h.lit::after, h2.lit::after {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; right: 0; bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(107,116,216,.35), transparent);
+  transform: translateX(-100%);
+  animation: sweep .8s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes sweep {
+  to { transform: translateX(100%); }
+}
+/* Avatar bounce */
+.audience-card img {
+  transition: transform .4s ease;
+}
+.audience-card.bounce img {
+  animation: bounce .5s ease;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  40% { transform: translateY(-6px) scale(1.05); }
+  70% { transform: translateY(2px) scale(.98); }
+}
+</style>
 </head>
 <body>
 
@@ -748,6 +780,32 @@ secLinks.forEach(a => {
   const s = document.querySelector(a.hash);
   if (s) io.observe(s);
 });
+</script>
+
+<script>
+const headings = document.querySelectorAll('h2, .sec-h');
+const headIO = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('lit');
+      headIO.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+headings.forEach(h => headIO.observe(h));
+
+const audience = document.querySelector('#audience');
+if (audience) {
+  const avIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.audience-card').forEach(card => card.classList.add('bounce'));
+        avIO.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  avIO.observe(audience);
+}
 </script>
 </body>
 </html>
